@@ -43,7 +43,7 @@ public Action HookPlayerChat_All(int client, const char[] command, int args)
 	GetCmdArg(1, text, sizeof(text));
 	
 	// Проверяем входящий текст на наличие фразы
-	if(StrContains(text, "!hq", false) == -1) // нету !hi в text
+	if(StrContains(text, "!qq", false) == -1) // нету !hi в text
 	{
 		return Plugin_Continue;
 	}
