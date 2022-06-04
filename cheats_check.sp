@@ -20,7 +20,6 @@ enum struct player
 	bool BlockSpec;
 	any StatusCheck;
 	char Discord[64];
-	
 	char SteamID[64];
 }
 
