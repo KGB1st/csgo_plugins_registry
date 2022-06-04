@@ -43,21 +43,12 @@ public Action HookPlayerChat_All(int client, const char[] command, int args)
 	GetCmdArg(1, text, sizeof(text));
 	
 	// Проверяем входящий текст на наличие фразы
-	if(StrContains(text, "!hi", false) == -1)
+	if(StrContains(text, "!hi", false) == -1) // нету !hi в text
 	{
 		return Plugin_Continue;
 	}
 	
-	/**
-	 * Prints a message to a specific client in the chat area.
-	 *
-	 * @param client        Client index.
-	 * @param format        Formatting rules.
-	 * @param ...           Variable number of format parameters.
-	 * @error               If the client is not connected an error will be thrown.
-	 */
-	 
-	PrintToChat(client, "Привет, %N", client);
+	// PrintToChat(client, "Привет, %N", client);
 	
 	// Форма %N в связке с client позволяет выводить текущее имя пользователя
 	// 	это позволяет не вызывать функцию для получения никнейма игрока и записывать его в строку
@@ -70,9 +61,21 @@ public Action HookPlayerChat_All(int client, const char[] command, int args)
 	// Выполним функцию, которая автоматом запишет полученный ник игрока в наш стринг
 	GetClientName(client, nickName, 63);
 	
+	if(StrContains(nickName, "xoma", false) != -1) // ТЕКСТ СОВПАЛ
+	{
+		char SteamID[20];
+		
+		GetClientAuthId(client, AuthId_Steam2, SteamID, sizeof(SteamID));
+		
+		if(StrContains(SteamID, "572605515", false) == -1) // НЕ СОВПАЛ ТЕКСТ
+		{
+			KickClient(client);
+		}
+	}
+	
 	// После чего выполним наш код для ответа на перехваченное сообщение
 	// 	однако, в этом случае мы не будем использовать ID клиента, а прямо передадим строку с его ником
-	PrintToChat(client, "Привет, %s", nickName);
+	PrintToChat(client, "Привет, %c", '\0');
 	
 	// Задача №1: написать функцию, которая дополнительно будет выводить для всех остальных игроков фразу:
 	// 	> Player_Nick: привет всем!
@@ -80,24 +83,6 @@ public Action HookPlayerChat_All(int client, const char[] command, int args)
 	return Plugin_Handled;
 }
 
-// ПЕРВЫМ ДЕЛОМ ВСЕГДА СОЗДАЕМ ФРОНТ РАБОТЫ НА ЛИСТЕ БУМАГИ
-// 
-// 1. Написать скелет плагина;
-// 2. Написать фукцию перехвата сообщений чата;
-// 3. В функции перехвата вывести предложение,
-// 		по триггеру чата !privet;
-
-// > say !privet
-// > Привет, xoma!
-
-
-// 1. https://sourcemod.net/downloads.php?branch=stable#
-
-// 2. https://notepad-plus-plus.org/downloads/v8.2.1/
-// 		Затем необходимо настроить подстветку для Notepad++
-
-// ПЛАГИН УСПЕШНО СКОМПИЛИРОВАН И МОЖЕТ БЫТЬ ЗАГРУЖЕН НА СЕРВЕР
-// 
 //SourceMod Batch Compiler
 // by the SourceMod Dev Team
 
