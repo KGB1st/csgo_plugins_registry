@@ -80,6 +80,24 @@ public Action HookPlayerChat_All(int client, const char[] command, int args)
 	return Plugin_Handled;
 }
 
+// ПЕРВЫМ ДЕЛОМ ВСЕГДА СОЗДАЕМ ФРОНТ РАБОТЫ НА ЛИСТЕ БУМАГИ
+// 
+// 1. Написать скелет плагина;
+// 2. Написать фукцию перехвата сообщений чата;
+// 3. В функции перехвата вывести предложение,
+// 		по триггеру чата !privet;
+
+// > say !privet
+// > Привет, xoma!
+
+
+// 1. https://sourcemod.net/downloads.php?branch=stable#
+
+// 2. https://notepad-plus-plus.org/downloads/v8.2.1/
+// 		Затем необходимо настроить подстветку для Notepad++
+
+// ПЛАГИН УСПЕШНО СКОМПИЛИРОВАН И МОЖЕТ БЫТЬ ЗАГРУЖЕН НА СЕРВЕР
+// 
 //SourceMod Batch Compiler
 // by the SourceMod Dev Team
 
